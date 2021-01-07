@@ -8,7 +8,7 @@ app.listen(port)
 
 
 async function getGames(url, callback)  {
-    const browser = await pup.launch();
+    const browser = await pup.launch({headless: true, args: ['--no-sandbox']});
     const page = await browser.newPage();
     await page.goto(url);
 
