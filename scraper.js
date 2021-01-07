@@ -3,7 +3,8 @@ const express = require('express');
 const cors = require('cors');
 const app = express();
 app.use(cors());
-app.listen(1000)
+const port = process.env.PORT || 1000
+app.listen(port)
 
 
 async function getGames(url, callback)  {
