@@ -62,13 +62,29 @@ async function getScores(url, callback)  {
 app.get('/test', (req, res) => {
     res.send('TEST');
 })
+// getGames('https://www.espn.com/nba/schedule', games => {
+//     app.get('/', (req, res) => {
+//         res.send(games)
+//     })
+// });
+// getScores('https://www.espn.com/nba/scoreboard', gameScores => {
+//     app.get('/scores', (req, res) => {
+//         res.send(gameScores)
+//     })
+// });
+var x = []
 getGames('https://www.espn.com/nba/schedule', games => {
-    app.get('/', (req, res) => {
-        res.send(games)
-    })
+    x = games
+    console.log(x)
 });
+var y = []
 getScores('https://www.espn.com/nba/scoreboard', gameScores => {
-    app.get('/scores', (req, res) => {
-        res.send(gameScores)
-    })
+    y = gameScores
+    console.log(y)
 });
+app.get('/', (req, res) => {
+    res.send(x)
+})
+app.get('/scores', (req, res) => {
+    res.send(y)
+})
