@@ -71,17 +71,13 @@ app.get('/test', (req, res) => {
 //         res.send(gameScores)
 //     })
 // });
-var x = []
-getGames('https://www.espn.com/nba/schedule', games => {
-    x = games
-    app.get('/', (req, res) => {
-        res.send(x)
-    })
+app.get('/', (req, res) => {
+    getGames('https://www.espn.com/nba/schedule', games => {
+    res.send(games)
 });
-var y = []
-getScores('https://www.espn.com/nba/scoreboard', gameScores => {
-    y = gameScores
-    app.get('/scores', (req, res) => {
-        res.send(y)
-    })
-});
+})
+app.get('/scores', (req, res) => {
+    getScores('https://www.espn.com/nba/scoreboard', gameScores => {
+        res.send(gameScores)
+    });
+})
