@@ -55,7 +55,6 @@ async function getScores(url, callback)  {
         return gamesInfo;
     })
     await browser.close();
-    console.log(scores)
     callback(scores);
 }
 
@@ -75,16 +74,14 @@ app.get('/test', (req, res) => {
 var x = []
 getGames('https://www.espn.com/nba/schedule', games => {
     x = games
-    console.log(x)
+    app.get('/', (req, res) => {
+        res.send(x)
+    })
 });
 var y = []
 getScores('https://www.espn.com/nba/scoreboard', gameScores => {
     y = gameScores
-    console.log(y)
+    app.get('/scores', (req, res) => {
+        res.send(y)
+    })
 });
-app.get('/', (req, res) => {
-    res.send(x)
-})
-app.get('/scores', (req, res) => {
-    res.send(y)
-})
