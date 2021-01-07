@@ -70,14 +70,14 @@ app.get('/', async (req, res) => {
     await getGames('https://www.espn.com/nba/schedule', games => {
     x = games
     });
-    res.status(200).json(x)
+    res.send(x)
 })
 
 
-app.get('/scores', (req, res) => {
-    getScores('https://www.espn.com/nba/scoreboard', gameScores => {
+app.get('/scores', async (req, res) => {
+    await getScores('https://www.espn.com/nba/scoreboard', gameScores => {
     y = gameScores
     });
-    res.status(200).json(y)
+    res.send(y)
 })
 
