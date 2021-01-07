@@ -78,11 +78,15 @@ app.get('/', (req, res) => {
     getGames('https://www.espn.com/nba/schedule', games => {
         x = games
     });
-    res.send(x)
+    setTimeout(() => {
+        res.send(x)
+    }, 10000)
 })
 app.get('/scores', (req, res) => {
     getScores('https://www.espn.com/nba/scoreboard', gameScores => {
         y = gameScores
     });
-    res.send(y)
+    setTimeout(() => {
+        res.send(y)
+    }, 10000)
 })
