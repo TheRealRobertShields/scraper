@@ -69,15 +69,15 @@ var y = []
 app.get('/', async (req, res) => {
     await getGames('https://www.espn.com/nba/schedule', games => {
     x = games
-    });
     res.send(x)
+    });
 })
 
 
 app.get('/scores', async (req, res) => {
     await getScores('https://www.espn.com/nba/scoreboard', gameScores => {
     y = gameScores
-    });
     res.send(y)
+    });
 })
 
