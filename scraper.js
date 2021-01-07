@@ -71,13 +71,18 @@ app.get('/test', (req, res) => {
 //         res.send(gameScores)
 //     })
 // });
+
+var x = []
+var y = []
 app.get('/', (req, res) => {
     getGames('https://www.espn.com/nba/schedule', games => {
-    res.send(games)
-});
+        x = games
+    });
+    res.send(x)
 })
 app.get('/scores', (req, res) => {
     getScores('https://www.espn.com/nba/scoreboard', gameScores => {
-        res.send(gameScores)
+        y = gameScores
     });
+    res.send(y)
 })
