@@ -36,7 +36,7 @@ function App() {
         <div className={game.time === 'LIVE' ? 'matchup flex-col live' : 'matchup flex-col'} key={game.roadTeam+game.homeTeam}>
           <h2>{game.awayTeam} @ {game.homeTeam}</h2>
           <h3>{game.time}</h3>
-          {scores.filter(score => game.awayTeam.includes(score.awayTeam)).map(score => (
+          {scores.filter(score => game.awayTeam.includes(score.awayTeam) && game.homeTeam.includes(score.homeTeam)).map(score => (
             <div className='scores'>
               <h4>{score.time}</h4>
               <div className='quarters'>

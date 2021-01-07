@@ -27,7 +27,7 @@ async function getGames(url, callback)  {
         return gamesInfo;
     })
     await browser.close();
-    callback(games);
+    await callback(games);
 }
 
 async function getScores(url, callback)  {
@@ -61,14 +61,23 @@ async function getScores(url, callback)  {
 app.get('/test', (req, res) => {
     res.send('TEST');
 })
-getGames('https://www.espn.com/nba/schedule', games => {
-    app.get('/', (req, res) => {
-        res.send(games)
-    })
-});
-getScores('https://www.espn.com/nba/scoreboard', gameScores => {
-    app.get('/scores', (req, res) => {
-        res.send(gameScores)
-    })
-});
+
+var x = []
+var y = []
+
+
+app.get('/', async (req, res) => {
+    await getGames('https://www.espn.com/nba/schedule', games => {
+    x = games
+    });
+    res.status(200).json(x)
+})
+
+
+app.get('/scores', (req, res) => {
+    getScores('https://www.espn.com/nba/scoreboard', gameScores => {
+    y = gameScores
+    });
+    res.status(200).json(y)
+})
 
