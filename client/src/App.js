@@ -9,10 +9,6 @@ function App() {
   useEffect(() => {
     dispatch(getGames());
     dispatch(getScores());
-    setInterval(() => {
-      dispatch(getGames());
-      dispatch(getScores());
-    }, 15000)
   }, [dispatch])
 
   const games = useSelector((state) => state.games);
