@@ -55,38 +55,20 @@ async function getScores(url, callback)  {
         return gamesInfo;
     })
     await browser.close();
-    callback(scores);
+    await callback(scores);
 }
 
 app.get('/test', (req, res) => {
     res.send('TEST');
 })
-// getGames('https://www.espn.com/nba/schedule', games => {
-//     app.get('/', (req, res) => {
-//         res.send(games)
-//     })
-// });
-// getScores('https://www.espn.com/nba/scoreboard', gameScores => {
-//     app.get('/scores', (req, res) => {
-//         res.send(gameScores)
-//     })
-// });
+getGames('https://www.espn.com/nba/schedule', games => {
+    app.get('/', (req, res) => {
+        res.send(games)
+    })
+});
+getScores('https://www.espn.com/nba/scoreboard', gameScores => {
+    app.get('/scores', (req, res) => {
+        res.send(gameScores)
+    })
+});
 
-var x = []
-var y = []
-app.get('/', (req, res) => {
-    getGames('https://www.espn.com/nba/schedule', games => {
-        x = games
-    });
-    setTimeout(() => {
-        res.send(x)
-    }, 10000)
-})
-app.get('/scores', (req, res) => {
-    getScores('https://www.espn.com/nba/scoreboard', gameScores => {
-        y = gameScores
-    });
-    setTimeout(() => {
-        res.send(y)
-    }, 10000)
-})
