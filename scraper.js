@@ -8,7 +8,7 @@ app.listen(port)
 
 
 async function getGames(url, callback)  {
-    const browser = await pup.launch({headless: true, args: ['--no-sandbox']});
+    const browser = await pup.launch({headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox']});
     const page = await browser.newPage();
     await page.goto(url);
 
@@ -31,7 +31,7 @@ async function getGames(url, callback)  {
 }
 
 async function getScores(url, callback)  {
-    const browser = await pup.launch({headless: true, args: ['--no-sandbox']});
+    const browser = await pup.launch({headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox']});
     const page = await browser.newPage();
     await page.goto(url);
 
@@ -70,7 +70,7 @@ app.get('/', async (req, res) => {
     await getGames('https://www.espn.com/nba/schedule', games => {
     x = games
     res.send(x)
-    });
+    }).then(console.log('good1')).catch(error => {console.log(error.message)});
 })
 
 
@@ -78,6 +78,6 @@ app.get('/scores', async (req, res) => {
     await getScores('https://www.espn.com/nba/scoreboard', gameScores => {
     y = gameScores
     res.send(y)
-    });
+    }).then(console.log('good2')).catch(error => {console.log(error.message)});
 })
 
