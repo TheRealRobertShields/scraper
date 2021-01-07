@@ -59,7 +59,9 @@ async function getScores(url, callback)  {
     callback(scores);
 }
 
-
+app.get('/test', (req, res) => {
+    res.send('TEST')
+})
 getGames('https://www.espn.com/nba/schedule', games => {
     app.get('/', (req, res) => {
         res.send(games)
